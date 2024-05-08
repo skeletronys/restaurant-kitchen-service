@@ -22,6 +22,8 @@ urlpatterns = [
     path("dishes/create/", DishCreateView.as_view(), name="dish-create"),
     path("dishes/<int:pk>/update/", DishUpdateView.as_view(), name="dish-update"),
     path("dishes/<int:pk>/delete/", DishDeleteView.as_view(), name="dish-delete"),
+    path("cook/", DishViewList.as_view(), name="cook-list"),
+    path("ingredients/", DishViewList.as_view(), name="ingredients-list"),
 ]
 
 
