@@ -29,7 +29,7 @@ def index(request):
 class DishTypeViewList(generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
-    template_name = "kitchen/DishType_list.html"
+    template_name = "kitchen/DishType/DishType_list.html"
     paginate_by = 2
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -54,17 +54,20 @@ class DishTypeViewList(generic.ListView):
 class DishTypeCreateView(generic.CreateView):
     model = DishType
     fields = "__all__"
+    template_name = "kitchen/DishType/DishType_form.html"
     success_url = reverse_lazy("kitchen:dish-type-list")
 
 
 class DishTypeUpdateView(generic.UpdateView):
     model = DishType
     fields = "__all__"
+    template_name = "kitchen/DishType/DishType_form.html"
     success_url = reverse_lazy("kitchen:dish-type-list")
 
 
 class DishTypeDeleteView(generic.DeleteView):
     model = DishType
+    template_name = "kitchen/DishType/DishType_confirm_delete.html"
     success_url = reverse_lazy("kitchen:dish-type-list")
 #DishView
 
@@ -72,7 +75,7 @@ class DishTypeDeleteView(generic.DeleteView):
 class DishViewList(generic.ListView):
     model = Dish
     context_object_name = "dish_list"
-    template_name = "kitchen/Dish_list.html"
+    template_name = "kitchen/Dish/Dish_list.html"
     paginate_by = 2
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -97,15 +100,18 @@ class DishViewList(generic.ListView):
 class DishCreateView(generic.CreateView):
     model = Dish
     fields = "__all__"
+    template_name = "kitchen/Dish/Dish_form.html"
     success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishUpdateView(generic.UpdateView):
     model = Dish
     fields = "__all__"
+    template_name = "kitchen/Dish/Dish_form.html"
     success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishDeleteView(generic.DeleteView):
     model = Dish
+    template_name = "kitchen/Dish/Dish_confirm_delete.html"
     success_url = reverse_lazy("kitchen:dish-list")
