@@ -16,7 +16,8 @@
     <table class="table">
       <tr>
         <th>ID</th>
-        <th>Type</th>
+        <th>Dish</th>
+        <th>Price</th>
         <th>Update</th>
         <th>Delete</th>
       </tr>
@@ -28,6 +29,9 @@
           </td>
           <td>
               {{ dish.name }}
+          </td>
+          <td>
+              {{ dish.price }}
           </td>
           <td>
               <a href="{% url 'kitchen:dish-update' pk=dish.id %}">
