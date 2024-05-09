@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from kitchen.models import (
     DishType,
     Dish,
-    Cook
+    Cook, Ingredient
 )
 
 
@@ -94,4 +94,28 @@ class CookSearchForm(forms.Form):
         widget=forms.TextInput(
             attrs={"placeholder": "Search by last name"}
         ))
+#Ingredients
 
+
+class IngredientCreationForm(forms.ModelForm):
+    class Meta:
+        model = Ingredient
+        fields = (
+            "name",
+        )
+
+
+class IngredientUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Ingredient
+        fields = ["name"]
+
+
+class IngredientSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by ingredient name"}
+        ))

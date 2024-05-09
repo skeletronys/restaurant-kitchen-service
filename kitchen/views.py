@@ -2,11 +2,17 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.models import DishType, Dish, Cook
+from kitchen.models import (
+    DishType,
+    Dish,
+    Cook,
+    Ingredient
+)
 from kitchen.forms import (
     DishTypeSearchForm,
     DishSearchForm,
-    CookSearchForm
+    CookSearchForm,
+    IngredientSearchForm
 )
 
 
@@ -161,3 +167,49 @@ class CookDeleteView(generic.DeleteView):
     model = Cook
     template_name = "kitchen/Cook/Cook_confirm_delete.html"
     success_url = reverse_lazy("kitchen:cook-list")
+#Ingridients
+
+
+class IngredientsViewList(generic.ListView):
+    model = Ingredient
+    context_object_name = "ingredients_list"
+    template_name = "kitchen/Ingredients/Ingredients_list.html"
+    paginate_by = 2
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(IngredientsViewList, self).get_context_data(**kwargs)
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = IngredientSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        username = self.request.GET.get("name")
+
+        if username:
+            return self.model.objects.filter(name__icontains=username)
+
+        return self.model.objects.all()
+
+
+class IngredientCreateView(generic.CreateView):
+    model = Ingredient
+    fields = "__all__"
+    template_name = "kitchen/Ingredients/Ingredients_form.html"
+    success_url = reverse_lazy("kitchen:ingredients-list")
+
+
+class IngredientUpdateView(generic.UpdateView):
+    model = Ingredient
+    fields = "__all__"
+    template_name = "kitchen/Ingredients/Ingredients_form.html"
+    success_url = reverse_lazy("kitchen:ingredients-list")
+
+
+class IngredientDeleteView(generic.DeleteView):
+    model = Ingredient
+    template_name = "kitchen/Ingredients/Ingredients_confirm_delete.html"
+    success_url = reverse_lazy("kitchen:ingredients-list")
