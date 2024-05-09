@@ -49,10 +49,10 @@ class DishTypeViewList(generic.ListView):
         return context
 
     def get_queryset(self):
-        username = self.request.GET.get("name")
+        name = self.request.GET.get("name")
 
-        if username:
-            return self.model.objects.filter(name__icontains=username)
+        if name:
+            return self.model.objects.filter(name__icontains=name)
 
         return self.model.objects.all()
 
@@ -95,10 +95,10 @@ class DishViewList(generic.ListView):
         return context
 
     def get_queryset(self):
-        username = self.request.GET.get("name")
+        name = self.request.GET.get("name")
 
-        if username:
-            return self.model.objects.filter(name__icontains=username)
+        if name:
+            return self.model.objects.filter(name__icontains=name)
 
         return self.model.objects.all()
 
@@ -133,18 +133,17 @@ class CookViewList(generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CookViewList, self).get_context_data(**kwargs)
 
-        name = self.request.GET.get("name", "")
+        last_name = self.request.GET.get("last_name", "")
 
         context["search_form"] = CookSearchForm(
-            initial={"name": name}
+            initial={"last_name": last_name}
         )
         return context
 
     def get_queryset(self):
-        username = self.request.GET.get("name")
-
-        if username:
-            return self.model.objects.filter(name__icontains=username)
+        last_name = self.request.GET.get("last_name")
+        if last_name:
+            return self.model.objects.filter(last_name__icontains=last_name)
 
         return self.model.objects.all()
 
@@ -187,10 +186,10 @@ class IngredientsViewList(generic.ListView):
         return context
 
     def get_queryset(self):
-        username = self.request.GET.get("name")
+        name = self.request.GET.get("name")
 
-        if username:
-            return self.model.objects.filter(name__icontains=username)
+        if name:
+            return self.model.objects.filter(name__icontains=name)
 
         return self.model.objects.all()
 
