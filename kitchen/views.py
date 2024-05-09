@@ -1,12 +1,12 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
 from kitchen.models import DishType, Dish, Cook
-from kitchen.templatetags.forms import (
+from kitchen.forms import (
     DishTypeSearchForm,
-    DishSearchForm
+    DishSearchForm,
+    CookSearchForm
 )
 
 
@@ -115,3 +115,49 @@ class DishDeleteView(generic.DeleteView):
     model = Dish
     template_name = "kitchen/Dish/Dish_confirm_delete.html"
     success_url = reverse_lazy("kitchen:dish-list")
+#Cook
+
+
+class CookViewList(generic.ListView):
+    model = Cook
+    context_object_name = "cook_list"
+    template_name = "kitchen/Cook/Cook_list.html"
+    paginate_by = 2
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CookViewList, self).get_context_data(**kwargs)
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = CookSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        username = self.request.GET.get("name")
+
+        if username:
+            return self.model.objects.filter(name__icontains=username)
+
+        return self.model.objects.all()
+
+
+class CookCreateView(generic.CreateView):
+    model = Cook
+    fields = ["username", "password", "first_name", "last_name", "years_of_experience", "email"]
+    template_name = "kitchen/Cook/Cook_form.html"
+    success_url = reverse_lazy("kitchen:cook-list")
+
+
+class CookUpdateView(generic.UpdateView):
+    model = Cook
+    fields = ["username", "first_name", "last_name", "years_of_experience"]
+    template_name = "kitchen/Cook/Cook_form.html"
+    success_url = reverse_lazy("kitchen:cook-list")
+
+
+class CookDeleteView(generic.DeleteView):
+    model = Cook
+    template_name = "kitchen/Cook/Cook_confirm_delete.html"
+    success_url = reverse_lazy("kitchen:cook-list")

@@ -1,6 +1,11 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
-from kitchen.models import DishType, Dish
+from kitchen.models import (
+    DishType,
+    Dish,
+    Cook
+)
 
 
 class DishTypeCreateForm(forms.ModelForm):
@@ -48,17 +53,11 @@ class DishCreateForm(forms.ModelForm):
             "cooks",
         )
 
-    def clean_license_number(self):
-        return self.cleaned_data["name", "price"]
-
 
 class DishUpdateForm(forms.ModelForm):
     class Meta:
         model = Dish
         fields = ["name"]
-
-    def clean_license_number(self):
-        return self.cleaned_data["name"]
 
 
 class DishSearchForm(forms.Form):
@@ -70,3 +69,29 @@ class DishSearchForm(forms.Form):
             attrs={"placeholder": "Search by name dish"}
         )
     )
+#Cook
+
+
+class CookCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Cook
+        fields = UserCreationForm.Meta.fields + (
+            "years_of_experience",
+        )
+
+
+class CookUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cook
+        fields = ["first_name", "last_name", "years_of_experience"]
+
+
+class CookSearchForm(forms.Form):
+    last_name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by last name"}
+        ))
+
