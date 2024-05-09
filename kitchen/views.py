@@ -12,7 +12,7 @@ from kitchen.forms import (
     DishTypeSearchForm,
     DishSearchForm,
     CookSearchForm,
-    IngredientSearchForm
+    IngredientSearchForm, CookCreationForm
 )
 
 
@@ -150,7 +150,7 @@ class CookViewList(generic.ListView):
 
 class CookCreateView(generic.CreateView):
     model = Cook
-    fields = ["username", "password", "first_name", "last_name", "years_of_experience", "email"]
+    form_class = CookCreationForm
     template_name = "kitchen/Cook/Cook_form.html"
     success_url = reverse_lazy("kitchen:cook-list")
 
