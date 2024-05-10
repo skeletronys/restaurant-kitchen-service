@@ -152,6 +152,11 @@ class CookViewList(generic.ListView):
         return self.model.objects.all()
 
 
+class CookDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Cook
+    template_name = "kitchen/Cook/Cook_detail.html"
+
+
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
     form_class = CookCreationForm
