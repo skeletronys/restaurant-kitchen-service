@@ -68,10 +68,6 @@ class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "kitchen/DishType/DishType_form.html"
     success_url = reverse_lazy("kitchen:dish-type-list")
 
-    def form_valid(self, form):
-        form.instance.image = UploadFiles(self.request.FILES['image'])
-        return super().form_valid(form)
-
 
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
