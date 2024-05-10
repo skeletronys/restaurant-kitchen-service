@@ -111,7 +111,7 @@ class DishViewList(generic.ListView):
         return self.model.objects.all()
 
 
-class DishDetailView(LoginRequiredMixin, generic.DetailView):
+class DishDetailView(generic.DetailView):
     model = Dish
     template_name = "kitchen/Dish/Dish_detail.html"
 
@@ -161,7 +161,7 @@ class CookViewList(generic.ListView):
         return self.model.objects.all()
 
 
-class CookDetailView(LoginRequiredMixin, generic.DetailView):
+class CookDetailView(generic.DetailView):
     model = Cook
     template_name = "kitchen/Cook/Cook_detail.html"
 
