@@ -8,14 +8,17 @@ from kitchen.models import (
     Dish,
     Cook,
     Ingredient,
-    UploadFiles
 )
 from kitchen.forms import (
     DishTypeSearchForm,
     DishSearchForm,
     CookSearchForm,
     IngredientSearchForm,
-    CookCreationForm
+    CookForm,
+    CookUpdateForm,
+    DishForm,
+    DishTypeForm,
+    IngredientForm,
 )
 
 
@@ -64,14 +67,14 @@ class DishTypeViewList(generic.ListView):
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
-    fields = "__all__"
+    form_class = DishTypeForm
     template_name = "kitchen/DishType/DishType_form.html"
     success_url = reverse_lazy("kitchen:dish-type-list")
 
 
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
-    fields = "__all__"
+    form_class = DishTypeForm
     template_name = "kitchen/DishType/DishType_form.html"
     success_url = reverse_lazy("kitchen:dish-type-list")
 
@@ -115,14 +118,14 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
-    fields = "__all__"
     template_name = "kitchen/Dish/Dish_form.html"
+    form_class = DishForm
     success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
-    fields = "__all__"
+    form_class = DishForm
     template_name = "kitchen/Dish/Dish_form.html"
     success_url = reverse_lazy("kitchen:dish-list")
 
@@ -165,14 +168,14 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
 
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
-    form_class = CookCreationForm
+    form_class = CookForm
     template_name = "kitchen/Cook/Cook_form.html"
     success_url = reverse_lazy("kitchen:cook-list")
 
 
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
-    fields = ["username", "first_name", "last_name", "years_of_experience"]
+    form_class = CookUpdateForm
     template_name = "kitchen/Cook/Cook_form.html"
     success_url = reverse_lazy("kitchen:cook-list")
 
@@ -211,14 +214,14 @@ class IngredientsViewList(generic.ListView):
 
 class IngredientCreateView(LoginRequiredMixin, generic.CreateView):
     model = Ingredient
-    fields = "__all__"
+    form_class = IngredientForm
     template_name = "kitchen/Ingredients/Ingredients_form.html"
     success_url = reverse_lazy("kitchen:ingredients-list")
 
 
 class IngredientUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Ingredient
-    fields = "__all__"
+    form_class = IngredientForm
     template_name = "kitchen/Ingredients/Ingredients_form.html"
     success_url = reverse_lazy("kitchen:ingredients-list")
 

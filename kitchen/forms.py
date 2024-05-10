@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import CheckboxSelectMultiple
 
 from kitchen.models import (
     DishType,
@@ -8,24 +9,18 @@ from kitchen.models import (
 )
 
 
-class DishTypeCreateForm(forms.ModelForm):
+class DishTypeForm(forms.ModelForm):
     class Meta:
         model = DishType
         fields = (
             "name",
         )
 
-    def clean_license_number(self):
-        return self.cleaned_data["name"]
 
-
-class DishTypeUpdateForm(forms.ModelForm):
+class DishTypeForm(forms.ModelForm):
     class Meta:
         model = DishType
         fields = ["name"]
-
-    def clean_license_number(self):
-        return self.cleaned_data["name"]
 
 
 class DishTypeSearchForm(forms.Form):
@@ -40,7 +35,18 @@ class DishTypeSearchForm(forms.Form):
 #Dish Forms
 
 
-class DishCreateForm(forms.ModelForm):
+class DishForm(forms.ModelForm):
+    ingredients = forms.ModelMultipleChoiceField(
+        queryset=Ingredient.objects.all(),
+        widget=CheckboxSelectMultiple,
+        required=True
+    )
+    cooks = forms.ModelMultipleChoiceField(
+        queryset=Cook.objects.all(),
+        widget=CheckboxSelectMultiple,
+        required=True
+    )
+
     class Meta:
         model = Dish
         fields = (
@@ -52,12 +58,6 @@ class DishCreateForm(forms.ModelForm):
             "image",
             "cooks",
         )
-
-
-class DishUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Dish
-        fields = ["name"]
 
 
 class DishSearchForm(forms.Form):
@@ -72,7 +72,7 @@ class DishSearchForm(forms.Form):
 #Cook
 
 
-class CookCreationForm(UserCreationForm):
+class CookForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Cook
         fields = UserCreationForm.Meta.fields + (
@@ -99,7 +99,7 @@ class CookSearchForm(forms.Form):
 #Ingredients
 
 
-class IngredientCreationForm(forms.ModelForm):
+class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
         fields = (
@@ -107,7 +107,7 @@ class IngredientCreationForm(forms.ModelForm):
         )
 
 
-class IngredientUpdateForm(forms.ModelForm):
+class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
         fields = ["name"]
