@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 
 class DishType(models.Model):
@@ -33,6 +35,18 @@ class Dish(models.Model):
     image = models.ImageField(null=True, blank=True)
     cooks = models.ManyToManyField(Cook, related_name='cooked_dishes')
 
+    def delete(self, *args, **kwargs):
+        if self.image:
+            self.image.delete()
+        super().delete(*args, **kwargs)
+
+
+@receiver(post_delete, sender=Dish)
+def dish_post_delete_handler(sender, instance, **kwargs):
+    for upload_file in instance.uploadfiles_set.all():
+        upload_file.file.delete()
+
 
 class UploadFiles(models.Model):
+    dish = models.ForeignKey(Dish, on_delete=models.CASCADE)
     file = models.FileField(upload_to='dishes')
