@@ -30,5 +30,9 @@ class Dish(models.Model):
     ingredients = models.ManyToManyField(Ingredient, related_name='ingredient_dishes')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE, related_name='type_dishes')
-    image = models.ImageField(upload_to='dishes/', null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
     cooks = models.ManyToManyField(Cook, related_name='cooked_dishes')
+
+
+class UploadFiles(models.Model):
+    file = models.FileField(upload_to='dishes')

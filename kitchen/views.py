@@ -7,7 +7,8 @@ from kitchen.models import (
     DishType,
     Dish,
     Cook,
-    Ingredient
+    Ingredient,
+    UploadFiles
 )
 from kitchen.forms import (
     DishTypeSearchForm,
@@ -67,6 +68,10 @@ class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "kitchen/DishType/DishType_form.html"
     success_url = reverse_lazy("kitchen:dish-type-list")
 
+    def form_valid(self, form):
+        form.instance.image = UploadFiles(self.request.FILES['image'])
+        return super().form_valid(form)
+
 
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
@@ -105,6 +110,11 @@ class DishViewList(generic.ListView):
             return self.model.objects.filter(name__icontains=name)
 
         return self.model.objects.all()
+
+
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Dish
+    template_name = "kitchen/Dish/Dish_detail.html"
 
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):

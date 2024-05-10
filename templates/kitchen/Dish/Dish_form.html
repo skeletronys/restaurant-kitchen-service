@@ -3,11 +3,10 @@
 
 {% block content %}
   <h1>{{ object|yesno:"Update,Create" }} Dish</h1>
-  <form action="" method="post" novalidate>
+  <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
-
-    <input type="submit" value="Submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary">create</button>
     <input type="button" value="Cancel" class="btn btn-primary" onclick="window.history.back();">
   </form>
 {% endblock %}
