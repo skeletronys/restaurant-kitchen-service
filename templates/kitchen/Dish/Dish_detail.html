@@ -14,6 +14,7 @@
   <p><strong>Name:</strong> {{ dish.name }}</p>
   <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
   <p><strong>Price:</strong> {{ dish.price }}</p>
+  <p><strong>Description:</strong> {{ dish.description }}</p>
   <p><strong>Ingredients:</strong></p>
   <ul>
     {% for ingredient in dish.ingredients.all %}
