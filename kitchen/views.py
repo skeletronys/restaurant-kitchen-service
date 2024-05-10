@@ -24,11 +24,13 @@ def index(request):
     num_dish_type = DishType.objects.count()
     num_dish = Dish.objects.count()
     num_cook = Cook.objects.count()
+    num_ingredients = Ingredient.objects.count()
 
     context = {
         "num_dish_type": num_dish_type,
         "num_dish": num_dish,
         "num_cook": num_cook,
+        "num_ingredients": num_ingredients,
     }
 
     return render(request, "kitchen/index.html", context=context)
@@ -38,7 +40,7 @@ class DishTypeViewList(generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
     template_name = "kitchen/DishType/DishType_list.html"
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(DishTypeViewList, self).get_context_data(**kwargs)
@@ -84,7 +86,7 @@ class DishViewList(generic.ListView):
     model = Dish
     context_object_name = "dish_list"
     template_name = "kitchen/Dish/Dish_list.html"
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(DishViewList, self).get_context_data(**kwargs)
@@ -130,7 +132,7 @@ class CookViewList(generic.ListView):
     model = Cook
     context_object_name = "cook_list"
     template_name = "kitchen/Cook/Cook_list.html"
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CookViewList, self).get_context_data(**kwargs)
@@ -175,7 +177,7 @@ class IngredientsViewList(generic.ListView):
     model = Ingredient
     context_object_name = "ingredients_list"
     template_name = "kitchen/Ingredients/Ingredients_list.html"
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IngredientsViewList, self).get_context_data(**kwargs)
