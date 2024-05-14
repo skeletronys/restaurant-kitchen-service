@@ -17411,3 +17411,8 @@ pre[class*="language-"] {
     overflow: auto !important; } }
 
 /*# sourceMappingURL=material-kit.css.map */
+
+
+/*my customer*/
+.max-width-800 {
+  max-width: 800px !important; }

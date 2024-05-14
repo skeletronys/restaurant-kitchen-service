@@ -1,7 +1,9 @@
-{% extends "base.html" %}
+{% extends "layouts/base.html" %}
 {% load crispy_forms_filters %}
 
 {% block content %}
+  {% include "includes/navigation.html" %}
+  <div class="row mx-10 mt-8 mx-auto" style="max-width: 1200px">
   <h1>
     Dish
     <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
@@ -9,30 +11,33 @@
     </a>
   </h1>
   <form action="" method="get" class="form-inline">
-      {{ search_form|crispy }}
-      <input type="submit" class="btn btn-primary button-search" value="Search 🔎">
+      <input type="text" name="name" value="" placeholder="Search by name dish" maxlength="255" class="textinput form-control mx-1" id="id_name" style="border: 1px solid grey">
+      <input type="submit" class="btn btn-primary button-search mt-3" value="Search 🔎">
   </form>
   {% if dish_list %}
     <table class="table">
       <tr>
-        <th>ID</th>
         <th>Dish</th>
         <th>Price</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th>Detailed information</th>
+        {% if user.is_authenticated %}
+          <th>Update</th>
+          <th>Delete</th>
+        {% endif %}
       </tr>
 
       {% for dish in dish_list %}
         <tr>
-          <td>
-              <a href="{% url 'kitchen:dish-detail' pk=dish.pk %}">{{ dish.id }}</a>
-          </td>
           <td>
               {{ dish.name }}
           </td>
           <td>
               {{ dish.price }}
           </td>
+          <td>
+              <a href="{% url 'kitchen:dish-detail' pk=dish.pk %}">Detailed information</a>
+          </td>
+          {% if user.is_authenticated %}
           <td>
               <a href="{% url 'kitchen:dish-update' pk=dish.id %}">
                 Update
@@ -44,6 +49,7 @@
                 Delete
               </a>
             </td>
+          {% endif %}
         </tr>
       {% endfor %}
     </table>
@@ -51,4 +57,5 @@
   {% else %}
       <p>There are no dish type in the service.</p>
   {% endif %}
+  </div>
 {% endblock %}
