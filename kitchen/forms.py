@@ -17,12 +17,6 @@ class DishTypeForm(forms.ModelForm):
         )
 
 
-class DishTypeForm(forms.ModelForm):
-    class Meta:
-        model = DishType
-        fields = ["name"]
-
-
 class DishTypeSearchForm(forms.Form):
     name = forms.CharField(
         max_length=255,
@@ -105,12 +99,6 @@ class IngredientForm(forms.ModelForm):
         fields = (
             "name",
         )
-
-
-class IngredientForm(forms.ModelForm):
-    class Meta:
-        model = Ingredient
-        fields = ["name"]
 
 
 class IngredientSearchForm(forms.Form):
