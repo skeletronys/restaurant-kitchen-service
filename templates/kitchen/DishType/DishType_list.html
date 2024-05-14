@@ -6,9 +6,11 @@
   <div class="row mx-10 mt-8 max-width-500 mx-auto">
     <h1>
       Dish Type
+      {% if user.is_authenticated %}
       <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-primary link-to-page">
         Create
       </a>
+      {% endif %}
     </h1>
     <form action="" method="get" class="form-inline">
         <input type="text" name="name" placeholder="Search by name" maxlength="255" class="textinput form-control" id="id_name" style="border: 1px solid grey">
