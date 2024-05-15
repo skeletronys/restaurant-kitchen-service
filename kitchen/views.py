@@ -187,7 +187,7 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
 #Ingridients
 
 
-class IngredientsViewList(generic.ListView):
+class IngredientsViewList(LoginRequiredMixin, generic.ListView):
     model = Ingredient
     context_object_name = "ingredients_list"
     template_name = "kitchen/Ingredients/Ingredients_list.html"
