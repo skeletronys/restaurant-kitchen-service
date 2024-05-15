@@ -1,6 +1,8 @@
-{% extends "base.html" %}
+{% extends "layouts/base.html" %}
 
 {% block content %}
+  {% include "includes/navigation.html" %}
+  <div class="row mx-10 mt-8 mx-auto text-center " style="min-width: 800px; max-width: 1100px">
   <h1>
     Username: {{ cook.username }}
     <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-danger link-to-page">
@@ -23,10 +25,10 @@
         <p><strong>Type:</strong> {{ cook_dish.dish_type.name }}</p>
         <p><strong>Price:</strong> {{ cook_dish.price }}</p>
         <p><strong>Description:</strong> {{ cook_dish.description }}</p>
-        <p class="text-muted"><strong>Id:</strong> {{cook_dish.id}}</p>
-
+        <a href="{% url 'kitchen:dish-detail' pk=cook_dish.id %}">More information</a>
     {% empty %}
       <p>No dish!</p>
     {% endfor %}
+  </div>
   </div>
 {% endblock %}
