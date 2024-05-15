@@ -37,6 +37,11 @@
                       <a href="{% url 'kitchen:cook-list' %}" class="dropdown-item border-radius-md">
                         <span>Cook</span>
                       </a>
+                      {% if user.is_authenticated %}
+                      <a href="{% url 'kitchen:ingredients-list' %}" class="dropdown-item border-radius-md">
+                        <span>Ingredients</span>
+                      </a>
+                      {% endif %}
                     </div>
                     <div class="d-lg-none">
                       <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
@@ -51,6 +56,11 @@
                       <a href="{% url 'kitchen:cook-list' %}" class="dropdown-item border-radius-md">
                         <span>Cook</span>
                       </a>
+                      {% if user.is_authenticated %}
+                      <a href="{% url 'kitchen:ingredients-list' %}" class="dropdown-item border-radius-md">
+                        <span>Ingredients</span>
+                      </a>
+                      {% endif %}
                     </div>
                   </div>
                 </li>
