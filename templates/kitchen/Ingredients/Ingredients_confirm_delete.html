@@ -1,12 +1,16 @@
-{% extends "base.html" %}
+{% extends "layouts/base.html" %}
 
 {% block content %}
+  {% include "includes/navigation.html" %}
+  <div class="mx-auto mt-8 max-width-500 text-center">
   <h1>Delete ingredients?</h1>
+    <h3 class="text-danger">{{ ingredient.name }}</h3>
   <form action="" method="post">
     {% csrf_token %}
-
-    <input type="submit" value="Yes" class="btn btn-danger">
-    <input type="button" value="Cancel" class="btn btn-primary" onclick="window.history.back();">
-
+    <div class="mt-4">
+      <input type="submit" value="Yes" class="btn btn-danger">
+      <input type="button" value="Cancel" class="btn btn-primary" onclick="window.history.back();">
+    </div>
   </form>
+  </div>
 {% endblock %}
