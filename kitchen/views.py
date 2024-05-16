@@ -191,7 +191,7 @@ class IngredientsViewList(LoginRequiredMixin, generic.ListView):
     model = Ingredient
     context_object_name = "ingredients_list"
     template_name = "kitchen/Ingredients/Ingredients_list.html"
-    paginate_by = 5
+    paginate_by = 10
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IngredientsViewList, self).get_context_data(**kwargs)
