@@ -43,6 +43,9 @@ class Dish(models.Model):
             self.image.delete()
         super().delete(*args, **kwargs)
 
+    def __str__(self):
+        return self.name
+
 
 @receiver(post_delete, sender=Dish)
 def dish_post_delete_handler(sender, instance, **kwargs):
