@@ -5,7 +5,8 @@ from django.forms import CheckboxSelectMultiple
 from kitchen.models import (
     DishType,
     Dish,
-    Cook, Ingredient
+    Cook,
+    Ingredient,
 )
 
 
