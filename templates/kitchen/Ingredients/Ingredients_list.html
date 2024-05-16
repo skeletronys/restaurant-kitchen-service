@@ -1,0 +1,54 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+{% block stylesheets %}
+  {% load static %}
+  <link id="pagestyle" href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  {% include "includes/navigation.html" %}
+  <div class="row mx-10 mt-8 max-width-500 mx-auto">
+    <h1 class="d-flex justify-content-between mx-0 px-3">
+      Ingredients
+      <a href="{% url 'kitchen:ingredients-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
+    </h1>
+    <form action="" method="get" class="form-inline">
+      <input type="text" name="name" placeholder="Search by ingredient name" maxlength="255"
+             class="textinput form-control mb-2" id="id_name">
+      <input type="submit" class="btn btn-primary button-search" value="Search 🔎">
+    </form>
+    {% if ingredients_list %}
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+
+        {% for ingredients in ingredients_list %}
+          <tr>
+            <td>
+              {{ ingredients.name }}
+            </td>
+            <td>
+              <a href="{% url 'kitchen:ingredients-update' pk=ingredients.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                 href="{% url 'kitchen:ingredients-delete' pk=ingredients.id %}">
+                Delete
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      {% include "includes/pagination.html" %}
+    {% else %}
+      <p>There are no ingredients type in the service.</p>
+    {% endif %}
+  </div>
+{% endblock %}
