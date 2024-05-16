@@ -7,13 +7,13 @@
 {% block content %}
   {% include "includes/navigation.html" %}
   <div class="mx-auto max-width-500 mt-8">
-  <h1>{{ object|yesno:"Update,Create" }} Ingredients</h1>
-  <form action="" method="post" novalidate>
-    {% csrf_token %}
-    {{ form|crispy }}
+    <h1>{{ object|yesno:"Update,Create" }} Ingredients</h1>
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {{ form|crispy }}
 
-    <input type="submit" value="Submit" class="btn btn-primary">
-    <input type="button" value="Cancel" class="btn btn-primary" onclick="window.history.back();">
-  </form>
+      <input type="submit" value="Submit" class="btn btn-primary">
+      <input type="button" value="Cancel" class="btn btn-primary" onclick="window.history.back();">
+    </form>
   </div>
 {% endblock %}

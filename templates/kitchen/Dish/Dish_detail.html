@@ -10,20 +10,20 @@
     <h1>
       Name dish: {{ dish.name }}
       {% if user.is_authenticated %}
-      <a href="{% url 'kitchen:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
-        Delete
-      </a>
+        <a href="{% url 'kitchen:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
+          Delete
+        </a>
 
-      <a href="{% url 'kitchen:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
-        Update
-      </a>
+        <a href="{% url 'kitchen:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
+          Update
+        </a>
       {% endif %}
     </h1>
     <p><strong>Name:</strong> {{ dish.name }}</p>
     <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
     <p><strong>Price:</strong> {{ dish.price }}</p>
     <div class="d-flex justify-content-between mt-4" style="min-width: 800px; max-width: 1100px">
-    <p class="max-width-300"><strong>Description:</strong> {{ dish.description }}</p>
+      <p class="max-width-300"><strong>Description:</strong> {{ dish.description }}</p>
       <ul class="ni-ul">
         <p><strong>Ingredients:</strong></p>
         {% for ingredient in dish.ingredients.all %}
