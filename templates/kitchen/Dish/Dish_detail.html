@@ -1,4 +1,8 @@
 {% extends "layouts/base.html" %}
+{% block stylesheets %}
+  {% load static %}
+  <link id="pagestyle" href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
   {% include "includes/navigation.html" %}
@@ -27,7 +31,9 @@
         {% endfor %}
       </ul>
       {% if dish.image %}
-        <img src="{{ dish.image.url }}" alt="Dish Image">
+        <div class="height-400 max-width-400">
+          <img src="{{ dish.image.url }}" alt="Dish Image" class="height-400 max-width-400">
+        </div>
       {% endif %}
     </div>
   </div>
