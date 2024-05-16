@@ -1,5 +1,81 @@
-"# restaurant-kitchen-service"
-![Restauran_kitchen_service_Diagram.jpg](Restauran_kitchen_service_Diagram.jpg)
-"Add Ingredient model with Many-to-Many connection to Dish. And of course implement interface to work with these models."
+# Restaurant Kitchen Service
 
-This project implements various data types in Django, as well as database optimization to reduce memory usage when deleting a dish and its associated information, including photos. Also, an authentication system is implemented, allowing only logged-in users to modify information on the site. Adding new users can only be done by an existing user within the system. This was done to ensure the security of information about cuisine and dishes since this site belongs to a restaurant, and only chefs or other staff members can edit and modify information on the site. The site's design was created using the Material Kit 2 Django template. A large part of the template code and various types of pages have been modified to meet the project's needs.
+Restaurant Kitchen Service is a web application designed to manage the operations of a restaurant kitchen. It allows users to manage dishes, ingredients, and dish types, providing a seamless way to organize and streamline kitchen tasks.
+![Restauran_kitchen_service_Diagram.jpg](Restauran_kitchen_service_Diagram.jpg)
+
+## Features
+
+- **Dish Management**: Create, update, and delete dishes.
+- **Ingredient Management**: Track and manage ingredients for each dish.
+- **Dish Type Management**: Categorize dishes by their type.
+- **Search Functionality**: Easily search for dishes and ingredients.
+- **User Authentication**: Secure login and registration for kitchen staff.
+
+## Technologies Used
+
+- **Backend**: Django
+- **Frontend**: HTML, CSS, JavaScript
+- **Database**: SQLite (can be configured to use PostgreSQL, MySQL, etc.)
+- **Authentication**: Django's built-in authentication system
+- **Styling**: Bootstrap
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed on your system:
+
+- Python 3.x
+- pip
+- virtualenv (optional but recommended)
+
+### Installation
+
+1. Clone the repository:
+
+    ```sh
+    git clone https://github.com/skeletronys/restaurant-kitchen-service.git
+    cd restaurant-kitchen-service
+    ```
+
+2. Create and activate a virtual environment:
+
+    ```sh
+    python -m venv env
+    source env/bin/activate  # On Windows use `env\Scripts\activate`
+    ```
+
+3. Install the required packages:
+
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+4. Apply migrations:
+
+    ```sh
+    python manage.py migrate
+    ```
+
+5. Create a superuser:
+
+    ```sh
+    python manage.py createsuperuser
+    ```
+
+6. Run the development server:
+
+    ```sh
+    python manage.py runserver
+    ```
+
+7. Open your web browser and go to `http://127.0.0.1:8000`.
+
+## Usage
+
+### Running Tests
+
+To run the tests for this project, use the following command:
+
+```sh
+python manage.py test
