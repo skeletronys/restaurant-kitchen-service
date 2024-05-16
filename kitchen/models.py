@@ -17,6 +17,9 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
+
 
 class Cook(AbstractUser):
     years_of_experience = models.IntegerField()
