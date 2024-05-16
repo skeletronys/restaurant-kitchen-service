@@ -63,7 +63,6 @@ class DishSearchForm(forms.Form):
             attrs={"placeholder": "Search by name dish"}
         )
     )
-#Cook
 
 
 class CookForm(UserCreationForm):
@@ -90,7 +89,6 @@ class CookSearchForm(forms.Form):
         widget=forms.TextInput(
             attrs={"placeholder": "Search by last name"}
         ))
-#Ingredients
 
 
 class IngredientForm(forms.ModelForm):
