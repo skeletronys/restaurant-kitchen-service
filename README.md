@@ -1,3 +1,5 @@
 "# restaurant-kitchen-service"
-![img.png](img.png)
+![Restauran_kitchen_service_Diagram.jpg](Restauran_kitchen_service_Diagram.jpg)
 "Add Ingredient model with Many-to-Many connection to Dish. And of course implement interface to work with these models."
+
+This project implements various data types in Django, as well as database optimization to reduce memory usage when deleting a dish and its associated information, including photos. Also, an authentication system is implemented, allowing only logged-in users to modify information on the site. Adding new users can only be done by an existing user within the system. This was done to ensure the security of information about cuisine and dishes since this site belongs to a restaurant, and only chefs or other staff members can edit and modify information on the site. The site's design was created using the Material Kit 2 Django template. A large part of the template code and various types of pages have been modified to meet the project's needs.
