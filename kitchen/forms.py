@@ -27,7 +27,6 @@ class DishTypeSearchForm(forms.Form):
             attrs={"placeholder": "Search by name"}
         )
     )
-#Dish Forms
 
 
 class DishForm(forms.ModelForm):
