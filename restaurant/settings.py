@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -27,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'fallback_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1"]
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,6 +94,13 @@ DATABASES = {
     }
 }
 
+
+USE_POSTGRESQL = os.environ.get('USE_POSTGRESQL', 'False') == 'True'
+
+if USE_POSTGRESQL:
+    DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql://neondb_owner:Wnzyhe6T0tvr@ep-lingering-union-a2f151gb.eu-central-1.aws.neon.tech/neondb?sslmode=require')
+    db_from_env = dj_database_url.parse(DATABASE_URL, conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
