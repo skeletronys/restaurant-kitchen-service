@@ -3,6 +3,10 @@
 Restaurant Kitchen Service is a web application designed to manage the operations of a restaurant kitchen. It allows users to manage dishes, ingredients, and dish types, providing a seamless way to organize and streamline kitchen tasks.
 ![Restauran_kitchen_service_Diagram.jpg](Restauran_kitchen_service_Diagram.jpg)
 
+View website: https://restaurant-kitchen-service-xm6y.onrender.com
+
+Unfortunately, on the rendered site, you will not see the food photos because the free version of Render is being used, and it does not support images uploaded through the server by chefs or administrators. P.S. In the local version, all photos will be displayed correctly. The issue lies with the free version of Render.com.
+
 ## Features
 
 - **Dish Management**: Create, update, and delete dishes.
@@ -63,13 +67,23 @@ Make sure you have the following installed on your system:
     python manage.py createsuperuser
     ```
 
-6. Run the development server:
+6. Add the following environment:
+
+   Use `https://djecrety.ir` for generate Key
+
+    ```sh
+   set DEBUG_KEY=False
+   set SECRET_KEY=Key
+   set USE_POSTGRESQL=True
+    ```
+
+7. Run the development server:
 
     ```sh
     python manage.py runserver
     ```
 
-7. Open your web browser and go to `http://127.0.0.1:8000`.
+8. Open your web browser and go to `http://127.0.0.1:8000`.
 
 ## Usage
 
