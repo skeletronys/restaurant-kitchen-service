@@ -94,13 +94,8 @@ DATABASES = {
     }
 }
 
-
-USE_POSTGRESQL = os.environ.get('USE_POSTGRESQL', 'False') == 'True'
-
-if USE_POSTGRESQL:
-    DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql://neondb_owner:Wnzyhe6T0tvr@ep-lingering-union-a2f151gb.eu-central-1.aws.neon.tech/neondb?sslmode=require')
-    db_from_env = dj_database_url.parse(DATABASE_URL, conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
